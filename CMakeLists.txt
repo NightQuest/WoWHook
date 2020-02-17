@@ -4,6 +4,8 @@ project(WoWHook)
 set(CMAKE_CXX_STANDARD 17)
 
 set(base_files
+		src/Application.cpp
+		src/Application.h
 		src/WoWHook.cpp
 		src/WoWHook.h
 		src/WoWHook.def
