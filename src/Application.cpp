@@ -25,4 +25,13 @@ void Application::OnFrame(IDirect3DDevice9* device)
 	static unsigned int frame = 0;
 	if( frame < 2 && ++frame == 2 )
 		MessageBox(NULL, "We're hooked in", "Success!", MB_OK);
+	
+	static bool fullyLoaded = false;
+	if( fullyLoaded == false )
+	{
+		if( (fullyLoaded = eng->IsPlayerInGameOrOnInitialLoad()) == true )
+		{
+			MessageBox(NULL, "Player is loading or in game!", "Loaded", MB_OK);
+		}
+	}
 }
