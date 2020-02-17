@@ -29,4 +29,5 @@ public:
 
 	// WoW functions
 	bool IsPlayerInGameOrOnInitialLoad() { return fpEngineIsPlayerInGameOrOnInitialLoad(); }
+
 };
