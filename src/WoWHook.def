@@ -1,3 +1,4 @@
 LIBRARY DINPUT8
 EXPORTS
 	DirectInput8Create = fake_DirectInput8Create
+	Direct3DCreate9 = fake_Direct3DCreate9

@@ -48,3 +48,33 @@ HRESULT WINAPI fake_DirectInput8Create(HINSTANCE hInst, DWORD dwVersion, REFIID 
 	// Call the real DirectInputCreate8
 	return real_DirectInput8Create(hInst, dwVersion, riidltf, ppvOut, punkOuter);
 }
+
+IDirect3D9* WINAPI fake_Direct3DCreate9(UINT SDKVersion)
+{
+	// Load the dll in the system directory, so our calls can be forwarded
+	if( !hD3d9 )
+	{
+		char tmp[MAX_PATH] = { 0 };
+		GetSystemDirectory(tmp, MAX_PATH);
+		strcat_s(tmp, "\\d3d9.dll");
+		hD3d9 = LoadLibrary(tmp);
+
+		// Make sure we were able to load it
+		if( !hD3d9 )
+			ExitProcess(EXIT_FAILURE);
+	}
+
+	// Define our function type
+	typedef IDirect3D9* (WINAPI* Direct3DCreate9_type)(UINT SDKVersion);
+
+	// create our function pointer
+	Direct3DCreate9_type real_Direct3DCreate9 = reinterpret_cast<Direct3DCreate9_type>(GetProcAddress(hD3d9, "Direct3DCreate9"));
+	if( !real_Direct3DCreate9 )
+		ExitProcess(1);
+
+	// Call the real Direct3DCreate9
+	IDirect3D9* real = real_Direct3DCreate9(SDKVersion);
+
+	// Return our fake one
+	return new fake_IDirect3D9(real);
+}
