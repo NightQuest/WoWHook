@@ -1,4 +1,4 @@
-﻿cmake_minimum_required(VERSION 3.13)
+﻿cmake_minimum_required(VERSION 3.16)
 project(WoWHook)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -16,7 +16,9 @@ set(base_files
 
 set(class_files
 		src/Classes/Engine.cpp
-		src/Classes/Engine.h)
+		src/Classes/Engine.h
+		src/Classes/ObjectMgr.cpp
+		src/Classes/ObjectMgr.h)
 
 set(d3d9_files
 		src/FakeDirect3D9/fake_IDirect3D9.cpp
@@ -45,5 +47,7 @@ add_library(WoWHook MODULE ${source_files})
 
 # Make sure the output filename is dinput8.dll
 set_target_properties(WoWHook PROPERTIES OUTPUT_NAME "dinput8")
+
+target_precompile_headers(WoWHook PUBLIC src/preCompiled.h)
 
 install(TARGETS WoWHook LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX})

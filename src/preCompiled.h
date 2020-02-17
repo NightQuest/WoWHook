@@ -17,6 +17,7 @@ using namespace std;
 
 // Classes
 #include "Classes/Engine.h"
+#include "Classes/ObjectMgr.h"
 
 // Fake Direct3D9
 #include "FakeDirect3D9/fake_IDirect3D9.h"
