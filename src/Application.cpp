@@ -14,6 +14,10 @@ void Application::OnAttach()
 	unsigned int dllName_addr = reinterpret_cast<unsigned int>(dllName);
 	eng->patchBytes(eng->RVAToPtr(Direct3DLibraryNameAddr), &dllName_addr, 4);
 	eng->patchBytes(eng->RVAToPtr(Direct3DExLibraryNameAddr), &dllName_addr, 4);
+
+	// Patch .sig verification
+	unsigned int nops = 0x90909090;
+	eng->patchBytes(eng->RVAToPtr(SigCompareLoop), &nops, 4);
 }
 
 void Application::OnDetach()
