@@ -104,5 +104,9 @@ HMONITOR WINAPI fake_IDirect3D9::GetAdapterMonitor(UINT Adapter)
 
 HRESULT WINAPI fake_IDirect3D9::CreateDevice(UINT Adapter, D3DDEVTYPE DeviceType, HWND hFocusWindow, DWORD BehaviorFlags, D3DPRESENT_PARAMETERS* pPresentationParameters, IDirect3DDevice9** ppReturnedDeviceInterface)
 {
-	return real->CreateDevice(Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, ppReturnedDeviceInterface);
+	HRESULT hRes = real->CreateDevice(Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, ppReturnedDeviceInterface);
+
+	*ppReturnedDeviceInterface = new fake_IDirect3DDevice9(*ppReturnedDeviceInterface);
+
+	return hRes;
 }

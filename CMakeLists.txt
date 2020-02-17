@@ -20,7 +20,10 @@ set(class_files
 
 set(d3d9_files
 		src/FakeDirect3D9/fake_IDirect3D9.cpp
-		src/FakeDirect3D9/fake_IDirect3D9.h)
+		src/FakeDirect3D9/fake_IDirect3D9.h
+		src/FakeDirect3D9/fake_IDirect3DDevice9.cpp
+		src/FakeDirect3D9/fake_IDirect3DDevice9.h)
+
 
 set(source_files
 		${base_files}

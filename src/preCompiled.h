@@ -14,6 +14,7 @@ using namespace std;
 
 // Fake Direct3D9
 #include "FakeDirect3D9/fake_IDirect3D9.h"
+#include "FakeDirect3D9/fake_IDirect3DDevice9.h"
 
 // Application
 #include "Application.h"
