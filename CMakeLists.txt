@@ -18,13 +18,19 @@ set(class_files
 		src/Classes/Engine.cpp
 		src/Classes/Engine.h)
 
+set(d3d9_files
+		src/FakeDirect3D9/fake_IDirect3D9.cpp
+		src/FakeDirect3D9/fake_IDirect3D9.h)
+
 set(source_files
 		${base_files}
-		${class_files})
+		${class_files}
+		${d3d9_files})
 
 # Set a group for Visual Studio
 source_group("" FILES ${base_files})
 source_group("Classes" FILES ${class_files})
+source_group("FakeDirect3D9" FILES ${d3d9_files})
 
 add_library(WoWHook MODULE ${source_files})
 
