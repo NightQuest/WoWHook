@@ -44,3 +44,5 @@ add_library(WoWHook MODULE ${source_files})
 
 # Make sure the output filename is dinput8.dll
 set_target_properties(WoWHook PROPERTIES OUTPUT_NAME "dinput8")
+
+install(TARGETS WoWHook LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX})
