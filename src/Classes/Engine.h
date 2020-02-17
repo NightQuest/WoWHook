@@ -6,6 +6,7 @@ class Engine
 {
 private:
 	LPVOID baseAddress;
+	CGxDeviceD3d** deviceD3d;
 	bool* playerIsInGame;
 
 	// WoW functions
@@ -22,6 +23,9 @@ public:
 
 	// WoW Helper functions
 	bool IsPlayerInGame() { return *playerIsInGame; }
+
+	// WoW Classes
+	CGxDeviceD3d* GetDeviceD3d() { return *deviceD3d; }
 
 	// WoW functions
 	bool IsPlayerInGameOrOnInitialLoad() { return fpEngineIsPlayerInGameOrOnInitialLoad(); }

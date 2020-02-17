@@ -12,6 +12,7 @@ using namespace std;
 
 // WoW definitions
 #include "WoW/MemoryAddresses.h"
+#include "WoW/CGxDeviceD3d.h"
 
 // Classes
 #include "Classes/Engine.h"

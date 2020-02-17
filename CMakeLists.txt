@@ -25,7 +25,8 @@ set(d3d9_files
 		src/FakeDirect3D9/fake_IDirect3DDevice9.h)
 
 set(wow_files
-		src/WoW/MemoryAddresses.h)
+		src/WoW/MemoryAddresses.h
+		src/WoW/CGxDeviceD3d.h)
 
 set(source_files
 		${base_files}

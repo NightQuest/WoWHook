@@ -20,6 +20,9 @@ Engine::Engine() : baseAddress(nullptr)
 	// Globals
 	playerIsInGame = reinterpret_cast<bool*>(RVAToPtr(EngineIsPlayerInGameAddr));
 
+	// Classes
+	deviceD3d = reinterpret_cast<CGxDeviceD3d**>(RVAToPtr(CGxDeviceD3dPtrAddr));
+
 	// Functions
 	fpEngineIsPlayerInGameOrOnInitialLoad = reinterpret_cast<EngineIsPlayerInGameOrOnInitialLoadFunc>(RVAToPtr(EngineIsPlayerInGameOrOnInitialLoadAddr));
 }
