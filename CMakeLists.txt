@@ -18,7 +18,9 @@ set(class_files
 		src/Classes/Engine.cpp
 		src/Classes/Engine.h
 		src/Classes/ObjectMgr.cpp
-		src/Classes/ObjectMgr.h)
+		src/Classes/ObjectMgr.h
+		src/Classes/ClientServices.cpp
+		src/Classes/ClientServices.h)
 
 set(d3d9_files
 		src/FakeDirect3D9/fake_IDirect3D9.cpp
