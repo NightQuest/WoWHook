@@ -1,6 +1,6 @@
 #include "preCompiled.h"
 
-Application::Application() : eng(make_unique<Engine>())
+Application::Application() : eng(Engine::getInstance())
 {
 }
 
@@ -22,6 +22,8 @@ void Application::OnAttach()
 
 void Application::OnDetach()
 {
+	// This should only be done here
+	delete eng;
 }
 
 void Application::OnFrame(IDirect3DDevice9* device)

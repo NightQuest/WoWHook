@@ -1,5 +1,7 @@
 #include "preCompiled.h"
 
+Engine* Engine::instance;
+
 Engine::Engine() : baseAddress(nullptr), deviceD3d(nullptr), playerIsInGame(nullptr)
 {
 	// Grab the DOS header of Wow.exe and make sure its signature is valid
@@ -29,6 +31,16 @@ Engine::Engine() : baseAddress(nullptr), deviceD3d(nullptr), playerIsInGame(null
 
 Engine::~Engine()
 {
+}
+
+Engine* Engine::getInstance()
+{
+	if( instance != nullptr )
+		return instance;
+
+	instance = new Engine();
+
+	return instance;
 }
 
 LPVOID Engine::RVAToPtr(LPVOID address)

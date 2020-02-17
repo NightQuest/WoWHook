@@ -9,12 +9,18 @@ private:
 	CGxDeviceD3d** deviceD3d;
 	bool* playerIsInGame;
 
+	// Singleton
+	static Engine* instance;
+
 	// WoW functions
 	EngineIsPlayerInGameOrOnInitialLoadFunc fpEngineIsPlayerInGameOrOnInitialLoad;
 
 public:
 	Engine();
 	~Engine();
+
+	// Singleton
+	static Engine* getInstance();
 
 	// Utility functions
 	LPVOID RVAToPtr(LPVOID address);
