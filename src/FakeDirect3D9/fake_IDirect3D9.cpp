@@ -1,6 +1,6 @@
 #include "preCompiled.h"
 
-fake_IDirect3D9::fake_IDirect3D9(IDirect3D9 * real_IDirect3D9) : real(real_IDirect3D9)
+fake_IDirect3D9::fake_IDirect3D9(IDirect3D9* real_IDirect3D9) : real(real_IDirect3D9)
 {
 }
 
