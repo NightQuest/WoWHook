@@ -3,7 +3,7 @@
 class fake_IDirect3D9 : public IDirect3D9
 {
 public:
-	fake_IDirect3D9(IDirect3D9 *real_IDirect3D9);
+	fake_IDirect3D9(IDirect3D9* real_IDirect3D9);
 	~fake_IDirect3D9();
 
 	// IUnknown members
@@ -23,10 +23,10 @@ public:
 	HRESULT WINAPI CheckDeviceMultiSampleType(UINT Adapter, D3DDEVTYPE DeviceType, D3DFORMAT SurfaceFormat, BOOL Windowed, D3DMULTISAMPLE_TYPE MultiSampleType, LPDWORD pQualityLevels);
 	HRESULT WINAPI CheckDepthStencilMatch(UINT Adapter, D3DDEVTYPE DeviceType, D3DFORMAT AdapterFormat, D3DFORMAT RenderTargetFormat, D3DFORMAT DepthStencilFormat);
 	HRESULT WINAPI CheckDeviceFormatConversion(UINT Adapter, D3DDEVTYPE DeviceType, D3DFORMAT SourceFormat, D3DFORMAT TargetFormat);
-	HRESULT WINAPI GetDeviceCaps(UINT Adapter ,D3DDEVTYPE DeviceType, D3DCAPS9* pCaps);
+	HRESULT WINAPI GetDeviceCaps(UINT Adapter, D3DDEVTYPE DeviceType, D3DCAPS9* pCaps);
 	HMONITOR WINAPI GetAdapterMonitor(UINT Adapter);
 	HRESULT WINAPI CreateDevice(UINT Adapter, D3DDEVTYPE DeviceType, HWND hFocusWindow, DWORD BehaviorFlags, D3DPRESENT_PARAMETERS* pPresentationParameters, IDirect3DDevice9** ppReturnedDeviceInterface);
 
 private:
-	IDirect3D9 *real;
+	IDirect3D9* real;
 };
