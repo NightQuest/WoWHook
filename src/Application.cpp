@@ -19,3 +19,10 @@ void Application::OnAttach()
 void Application::OnDetach()
 {
 }
+
+void Application::OnFrame(IDirect3DDevice9* device)
+{
+	static unsigned int frame = 0;
+	if( frame < 2 && ++frame == 2 )
+		MessageBox(NULL, "We're hooked in", "Success!", MB_OK);
+}

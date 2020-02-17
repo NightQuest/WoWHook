@@ -233,6 +233,8 @@ HRESULT WINAPI fake_IDirect3DDevice9::BeginScene()
 
 HRESULT WINAPI fake_IDirect3DDevice9::EndScene()
 {
+	app.OnFrame(real);
+
 	return real->EndScene();
 }
 
