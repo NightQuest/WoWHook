@@ -5,11 +5,30 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 	switch( ul_reason_for_call )
 	{
 	case DLL_PROCESS_ATTACH:
-		app.OnAttach();
+		if( ++instances == 1 )
+		{
+			hInstance = reinterpret_cast<HINSTANCE>(hModule);
+
+			app.OnAttach();
+		}
 		break;
 
 	case DLL_PROCESS_DETACH:
-		app.OnDetach();
+		if( --instances == 0 )
+		{
+			if( hD3d9 )
+			{
+				FreeLibrary(hD3d9);
+				hD3d9 = 0;
+			}
+			if( hDinput )
+			{
+				FreeLibrary(hDinput);
+				hDinput = 0;
+			}
+
+			app.OnDetach();
+		}
 		break;
 
 	case DLL_THREAD_ATTACH:
