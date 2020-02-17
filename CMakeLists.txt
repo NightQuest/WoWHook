@@ -3,6 +3,8 @@ project(WoWHook)
 
 set(CMAKE_CXX_STANDARD 17)
 
+include_directories(src)
+
 set(base_files
 		src/Application.cpp
 		src/Application.h
@@ -12,11 +14,17 @@ set(base_files
 		src/preCompiled.cpp
 		src/preCompiled.h)
 
+set(class_files
+		src/Classes/Engine.cpp
+		src/Classes/Engine.h)
+
 set(source_files
-		${base_files})
+		${base_files}
+		${class_files})
 
 # Set a group for Visual Studio
 source_group("" FILES ${base_files})
+source_group("Classes" FILES ${class_files})
 
 add_library(WoWHook MODULE ${source_files})
 

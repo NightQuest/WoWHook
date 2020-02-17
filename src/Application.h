@@ -8,4 +8,7 @@ public:
 
 	void OnAttach();
 	void OnDetach();
+
+private:
+	unique_ptr<Engine> eng;
 };

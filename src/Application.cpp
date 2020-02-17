@@ -1,6 +1,6 @@
 #include "preCompiled.h"
 
-Application::Application()
+Application::Application() : eng(make_unique<Engine>())
 {
 }
 
