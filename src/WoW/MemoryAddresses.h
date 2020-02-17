@@ -1,5 +1,8 @@
 #pragma once
 
+// Globals
+#define EngineIsPlayerInGameAddr				0x007CF792
+
 // Functions
 #define EngineIsPlayerInGameOrOnInitialLoadAddr	0x004C5330
 

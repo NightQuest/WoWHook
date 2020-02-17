@@ -29,9 +29,9 @@ void Application::OnFrame(IDirect3DDevice9* device)
 	static bool fullyLoaded = false;
 	if( fullyLoaded == false )
 	{
-		if( (fullyLoaded = eng->IsPlayerInGameOrOnInitialLoad()) == true )
+		if( (fullyLoaded = eng->IsPlayerInGame()) == true )
 		{
-			MessageBox(NULL, "Player is loading or in game!", "Loaded", MB_OK);
+			MessageBox(NULL, "Player has entered the world!", "Loaded", MB_OK);
 		}
 	}
 }

@@ -15,6 +15,11 @@ Engine::Engine() : baseAddress(nullptr)
 	// Set the base address, based on the header information.
 	baseAddress = reinterpret_cast<LPVOID>(ntHeaders->OptionalHeader.ImageBase + ntHeaders->OptionalHeader.BaseOfCode);
 
+	// Set our addresses:
+
+	// Globals
+	playerIsInGame = reinterpret_cast<bool*>(RVAToPtr(EngineIsPlayerInGameAddr));
+
 	// Functions
 	fpEngineIsPlayerInGameOrOnInitialLoad = reinterpret_cast<EngineIsPlayerInGameOrOnInitialLoadFunc>(RVAToPtr(EngineIsPlayerInGameOrOnInitialLoadAddr));
 }
