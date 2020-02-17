@@ -4,5 +4,6 @@
 static HINSTANCE hInstance;
 static HMODULE hDinput = 0, hD3d9 = 0;
 static unsigned int instances = 0;
+static char dllName[] = "dinput8.dll";
 static Application app;
 #pragma data_seg()

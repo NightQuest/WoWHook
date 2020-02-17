@@ -9,6 +9,9 @@
 #include <memory>
 using namespace std;
 
+// WoW definitions
+#include "WoW/MemoryAddresses.h"
+
 // Classes
 #include "Classes/Engine.h"
 

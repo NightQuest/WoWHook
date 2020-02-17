@@ -24,16 +24,20 @@ set(d3d9_files
 		src/FakeDirect3D9/fake_IDirect3DDevice9.cpp
 		src/FakeDirect3D9/fake_IDirect3DDevice9.h)
 
+set(wow_files
+		src/WoW/MemoryAddresses.h)
 
 set(source_files
 		${base_files}
 		${class_files}
-		${d3d9_files})
+		${d3d9_files}
+		${wow_files})
 
 # Set a group for Visual Studio
 source_group("" FILES ${base_files})
 source_group("Classes" FILES ${class_files})
 source_group("FakeDirect3D9" FILES ${d3d9_files})
+source_group("WoW" FILES ${wow_files})
 
 add_library(WoWHook MODULE ${source_files})
 
