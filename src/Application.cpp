@@ -17,7 +17,10 @@ void Application::OnAttach()
 
 	// Patch .sig verification
 	unsigned int nops = 0x90909090;
-	eng->patchBytes(eng->RVAToPtr(SigCompareLoop), &nops, 4);
+	eng->patchBytes(eng->RVAToPtr(SigCompareLoopAddr), &nops, 4);
+
+	// Patch language check
+	eng->patchBytes(eng->RVAToPtr(UnderstandAnyLanguageAddr), &nops, 2);
 }
 
 void Application::OnDetach()
@@ -28,10 +31,11 @@ void Application::OnDetach()
 
 void Application::OnFrame(IDirect3DDevice9* device)
 {
+#ifdef _DEBUG
 	static unsigned int frame = 0;
 	if( frame < 2 && ++frame == 2 )
 		MessageBox(NULL, "We're hooked in", "Success!", MB_OK);
-	
+
 	static bool fullyLoaded = false;
 	if( fullyLoaded == false )
 	{
@@ -40,4 +44,5 @@ void Application::OnFrame(IDirect3DDevice9* device)
 			MessageBox(NULL, "Player has entered the world!", "Loaded", MB_OK);
 		}
 	}
+#endif
 }
