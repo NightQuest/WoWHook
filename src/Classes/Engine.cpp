@@ -2,7 +2,7 @@
 
 Engine* Engine::instance;
 
-Engine::Engine() : baseAddress(nullptr), deviceD3d(nullptr), playerIsInGame(nullptr)
+Engine::Engine() : baseAddress(nullptr), deviceD3d(nullptr), playerIsInGame(nullptr), fpEngineIsPlayerInGameOrOnInitialLoad(nullptr)
 {
 	// Grab the DOS header of Wow.exe and make sure its signature is valid
 	IMAGE_DOS_HEADER* dosHeader = reinterpret_cast<IMAGE_DOS_HEADER*>(GetModuleHandle(NULL));
