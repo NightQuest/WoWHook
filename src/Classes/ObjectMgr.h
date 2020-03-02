@@ -1,6 +1,6 @@
 #pragma once
 
-typedef unsigned int (__cdecl* ObjectMgrGetActivePlayerGUIDFunc)();
+typedef UINT64(__cdecl* ObjectMgrGetActivePlayerGUIDFunc)();
 typedef void* (__cdecl* ObjectMgrGetActivePlayerObjectFunc)();
 typedef void* (__cdecl* ObjectMgrGetObjectFunc)(UINT64 objectGUID, unsigned int unk, const char* file, unsigned int line);
 
@@ -17,8 +17,8 @@ public:
 	ObjectMgr();
 	~ObjectMgr();
 
-	unsigned int getActivePlayerGUID() { return fpObjectMgrGetActivePlayerGUID(); }
-	void* getActivePlayerObject() { return fpObjectMgrGetActivePlayerObject(); }
-	void* getObject(UINT64 objectGUID, unsigned int unk) { return fpObjectMgrGetObject(objectGUID, unk, __FILE__, __LINE__); }
+	UINT64 GetActivePlayerGUID() { return fpObjectMgrGetActivePlayerGUID(); }
+	void* GetActivePlayerObject() { return fpObjectMgrGetActivePlayerObject(); }
+	void* GetObject(UINT64 objectGUID, unsigned int unk) { return fpObjectMgrGetObject(objectGUID, unk, __FILE__, __LINE__); }
 
 };
