@@ -8,10 +8,12 @@
 
 // std headers
 #include <memory>
+#include <string>
 using namespace std;
 
 // WoW definitions
 #include "WoW/MemoryAddresses.h"
+#include "WoW/DataTypes.h"
 #include "WoW/CGxDeviceD3d.h"
 #include "WoW/CDataStore.h"
 

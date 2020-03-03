@@ -31,8 +31,10 @@ set(d3d9_files
 set(wow_files
 		src/WoW/MemoryAddresses.h
 		src/WoW/CGxDeviceD3d.h
+		src/WoW/CDataStore.cpp
 		src/WoW/CDataStore.h
-		src/WoW/CPlayer.h)
+		src/WoW/CPlayer.h
+		src/WoW/DataTypes.h)
 
 set(source_files
 		${base_files}
