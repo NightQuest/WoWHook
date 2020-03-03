@@ -1,6 +1,6 @@
 #include "preCompiled.h"
 
-CDataStore::CDataStore()
+CDataStore::CDataStore() : buffer(nullptr), base(0), allocated(0), size(0), read(0)
 {
 	Engine* eng = Engine::getInstance();
 
