@@ -2,7 +2,8 @@
 
 Engine* Engine::instance;
 
-Engine::Engine() : baseAddress(nullptr), deviceD3d(nullptr), playerIsInGame(nullptr), fpEngineIsPlayerInGameOrOnInitialLoad(nullptr)
+Engine::Engine() : baseAddress(nullptr), deviceD3d(nullptr), playerIsInGame(nullptr), fpEngineIsPlayerInGameOrOnInitialLoad(nullptr),
+				fpGetInfoBlockByID(nullptr), fpGetInventoryArt(nullptr), fpItemGetCacheEntry(nullptr)
 {
 	// Grab the DOS header of Wow.exe and make sure its signature is valid
 	IMAGE_DOS_HEADER* dosHeader = reinterpret_cast<IMAGE_DOS_HEADER*>(GetModuleHandle(NULL));
@@ -27,6 +28,9 @@ Engine::Engine() : baseAddress(nullptr), deviceD3d(nullptr), playerIsInGame(null
 
 	// Functions
 	fpEngineIsPlayerInGameOrOnInitialLoad = reinterpret_cast<EngineIsPlayerInGameOrOnInitialLoadFunc>(RVAToPtr(EngineIsPlayerInGameOrOnInitialLoadAddr));
+	fpGetInfoBlockByID = reinterpret_cast<GetInfoBlockByIDFunc>(RVAToPtr(DBCacheGetInfoBlockByIDAddr));
+	fpGetInventoryArt = reinterpret_cast<GetInventoryArtFunc>(RVAToPtr(GetInventoryArtAddr));
+	fpItemGetCacheEntry = reinterpret_cast<ItemGetCacheEntryFunc>(RVAToPtr(CItemGetCacheEntryAddr));
 }
 
 Engine::~Engine()

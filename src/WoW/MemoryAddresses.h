@@ -2,6 +2,7 @@
 
 // Globals
 #define EngineIsPlayerInGameAddr				0x007CF792
+#define DBItemCache								0x0085C828
 
 // Classes
 #define CGxDeviceD3dPtrAddr						0x0085CF88
@@ -65,6 +66,12 @@
 #define CDataStoreDetachBufferProxyAddr			0x004CBFC0
 #define CDataStoreNewAddr						0x004CC0B0
 #define CDataStoreFree_0Addr					0x004CC160
+
+#define CItemGetSafeInventoryItemArtAddr		0x00309A00
+#define CItemGetRightClickFunctionAddr			0x00306280
+#define CItemGetCacheEntryAddr					0x00306360
+#define DBCacheGetInfoBlockByIDAddr				0x0027BA30
+#define GetInventoryArtAddr						0x00309910
 
 // Patch addresses
 #define Direct3DLibraryNameAddr					0x0028DD92

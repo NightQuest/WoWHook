@@ -21,6 +21,10 @@ void Application::OnAttach()
 
 	// Patch language check
 	eng->patchBytes(eng->RVAToPtr(UnderstandAnyLanguageAddr), &nops, 2);
+
+	// Patch inventory icons to use cache, not DBC
+	eng->detourFunction(eng->RVAToPtr(CItemGetSafeInventoryItemArtAddr), GetSafeInventoryIcon, 0x3F);
+	eng->detourFunction(eng->RVAToPtr(CItemGetRightClickFunctionAddr), GetRightClickFunction, 0x2D);
 }
 
 void Application::OnDetach()
@@ -45,4 +49,34 @@ void Application::OnFrame(IDirect3DDevice9* device)
 		}
 	}
 #endif
+}
+
+const char* Application::GetSafeInventoryIcon()
+{
+	Engine* eng = Engine::getInstance();
+	UINT32 itemID;
+	UINT32 displayId = 0;
+
+	__asm
+	{
+		mov eax, dword ptr ds : [ecx + 0x8] // this(CObject)->data
+		mov eax, dword ptr ds : [eax + 0xC] // data->itemID
+		mov itemID, eax
+	}
+
+	cacheEntry* cache = eng->GetInfoBlockByID(itemID);
+	if( cache )
+		displayId = cache->displayId;
+
+	return eng->GetInventoryArt(displayId);
+}
+
+UINT32 Application::GetRightClickFunction()
+{
+	Engine* eng = Engine::getInstance();
+
+	cacheEntry* ret = eng->ItemGetCacheEntry();
+	if( ret )
+		return ret->always4;
+	return 0;
 }
