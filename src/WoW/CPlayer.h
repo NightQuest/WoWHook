@@ -1,4 +1,4 @@
-#include "preCompiled.h"
+#pragma once
 
 class CPlayer
 {
