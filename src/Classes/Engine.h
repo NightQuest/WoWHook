@@ -26,6 +26,7 @@ public:
 	LPVOID RVAToPtr(LPVOID address);
 	LPVOID RVAToPtr(unsigned int address);
 	bool patchBytes(LPVOID dest, const LPVOID src, size_t size);
+	bool detourFunction(LPVOID originalFunc, LPVOID newFunc, size_t size);
 
 	// WoW Helper functions
 	bool IsPlayerInGame() { return *playerIsInGame; }

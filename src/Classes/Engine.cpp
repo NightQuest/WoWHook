@@ -64,3 +64,32 @@ bool Engine::patchBytes(LPVOID dest, const LPVOID src, size_t size)
 	}
 	return false;
 }
+
+bool Engine::detourFunction(LPVOID originalFunc, LPVOID newFunc, size_t size)
+{
+	// Make sure there's room for our jump
+	if( size < 5 )
+		return false;
+
+	// create our jump
+	BYTE jmp[5] = { 0 };
+	jmp[0] = '\xE9';
+	UINT32 relativeAddress = reinterpret_cast<UINT32>(newFunc) - reinterpret_cast<UINT32>(originalFunc) - 5;
+	*reinterpret_cast<UINT32*>(&jmp[1]) = relativeAddress;
+
+	// Write our detour
+	if( !patchBytes(originalFunc, &jmp, 5) )
+		return false;
+
+	bool ret = true;
+	if( size > 5 )
+	{
+		// Fill the rest with NOPs
+		BYTE* buffer = new BYTE[size - 5];
+		memset(buffer, '\x90', size - 5);
+		ret = patchBytes(reinterpret_cast<LPVOID>(reinterpret_cast<UINT32>(originalFunc) + 5), buffer, size - 5);
+		delete[] buffer;
+	}
+
+	return ret;
+}
