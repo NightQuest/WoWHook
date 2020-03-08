@@ -25,6 +25,7 @@ void Application::OnAttach()
 	// Patch inventory icons to use cache, not DBC
 	eng->detourFunction(eng->RVAToPtr(CItemGetSafeInventoryItemArtAddr), GetSafeInventoryIcon, 0x3F);
 	eng->detourFunction(eng->RVAToPtr(CItemGetRightClickFunctionAddr), GetRightClickFunction, 0x2D);
+	eng->detourFunction(eng->RVAToPtr(CItemGetSafeDisplayIdAddr), GetSafeDisplayId, 0x2D);
 }
 
 void Application::OnDetach()
@@ -51,10 +52,9 @@ void Application::OnFrame(IDirect3DDevice9* device)
 #endif
 }
 
-const char* Application::GetSafeInventoryIcon()
+UINT32 Application::GetSafeDisplayId()
 {
-	Engine* eng = Engine::getInstance();
-	UINT32 itemID;
+	UINT32 itemID = 0;
 	UINT32 displayId = 0;
 
 	__asm
@@ -64,11 +64,18 @@ const char* Application::GetSafeInventoryIcon()
 		mov itemID, eax
 	}
 
+	Engine* eng = Engine::getInstance();
 	cacheEntry* cache = eng->GetInfoBlockByID(itemID);
 	if( cache )
 		displayId = cache->displayId;
 
-	return eng->GetInventoryArt(displayId);
+	return displayId;
+}
+
+const char* Application::GetSafeInventoryIcon()
+{
+	Engine* eng = Engine::getInstance();
+	return eng->GetInventoryArt(GetSafeDisplayId());
 }
 
 UINT32 Application::GetRightClickFunction()

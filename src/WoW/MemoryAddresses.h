@@ -70,6 +70,7 @@
 #define CItemGetSafeInventoryItemArtAddr		0x00309A00
 #define CItemGetRightClickFunctionAddr			0x00306280
 #define CItemGetCacheEntryAddr					0x00306360
+#define CItemGetSafeDisplayIdAddr				0x00306300
 #define DBCacheGetInfoBlockByIDAddr				0x0027BA30
 #define GetInventoryArtAddr						0x00309910
 
