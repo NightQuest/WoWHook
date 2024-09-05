@@ -53,6 +53,8 @@ add_library(WoWHook MODULE ${source_files})
 # Make sure the output filename is dinput8.dll
 set_target_properties(WoWHook PROPERTIES OUTPUT_NAME "dinput8")
 
+target_link_libraries(WoWHook PRIVATE dwmapi.lib)
+
 target_precompile_headers(WoWHook PUBLIC src/preCompiled.h)
 
 install(TARGETS WoWHook LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX})

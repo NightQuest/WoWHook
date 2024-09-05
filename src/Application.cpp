@@ -36,20 +36,30 @@ void Application::OnDetach()
 
 void Application::OnFrame(IDirect3DDevice9* device)
 {
-#ifdef _DEBUG
 	static unsigned int frame = 0;
 	if( frame < 2 && ++frame == 2 )
-		MessageBox(NULL, "We're hooked in", "Success!", MB_OK);
-
-	static bool fullyLoaded = false;
-	if( fullyLoaded == false )
 	{
-		if( (fullyLoaded = eng->IsPlayerInGame()) == true )
+		if( auto* device = eng->GetDeviceD3d() )
 		{
-			MessageBox(NULL, "Player has entered the world!", "Loaded", MB_OK);
+			HWND hwnd = device->GetWindowHandle();
+			if( hwnd )
+			{
+				HKEY hKey;
+				if( ::RegOpenKey(HKEY_CURRENT_USER, R"(SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize)", &hKey) == ERROR_SUCCESS )
+				{
+					DWORD dwType = REG_DWORD, dwSize = sizeof(DWORD);
+					DWORD dwAttrib = FALSE;
+
+					if( ::RegQueryValueEx(hKey, "AppsUseLightTheme", nullptr, &dwType, reinterpret_cast<LPBYTE>(&dwAttrib), &dwSize) == ERROR_SUCCESS )
+					{
+						BOOL darkMode = !dwAttrib;
+						::DwmSetWindowAttribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, &darkMode, sizeof(BOOL));
+					}
+					::RegCloseKey(hKey);
+				}
+			}
 		}
 	}
-#endif
 }
 
 UINT32 Application::GetSafeDisplayId()
